@@ -1,20 +1,20 @@
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 import {visionTool} from '@sanity/vision'
-//import {googleMapsInput} from '@sanity/google-maps-input'
 import {schemaTypes} from './schemas'
+import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
 
 export default defineConfig({
   name: 'default',
   title: 'Movie DB',
 
-  projectId: '87usjenf',
-  dataset: 'staging',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID,
+  dataset: process.env.SANITY_STUDIO_DATASET,
 
   plugins: [
     deskTool(),
     visionTool(),
-    //googleMapsInput(),
+    vercelDeployTool(),
   ],
 
   schema: {
